@@ -215,11 +215,6 @@ Docker
 - Improve chunking strategies for better context retrieval
 - Add metadata filtering for more targeted searches
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-Feel free to contribute to this project by submitting issues or pull requests.
 
 ## Getting Started
 
@@ -230,8 +225,8 @@ Feel free to contribute to this project by submitting issues or pull requests.
 
 ### Obtaining a Google Gemini API Key
 
-1. Go to the [Google AI Studio](https://ai.google.dev/) and create an account or sign in.
-2. Navigate to the [API keys section](https://ai.google.dev/api/rest) in your Google AI Studio dashboard.
+1. Go to the [Google AI Studio](https://aistudio.google.com/) and create an account or sign in.
+2. Navigate to the [API keys section](https://aistudio.google.com/apikey) in your Google AI Studio dashboard.
 3. Click "Create API Key" and follow the instructions.
 4. Copy your newly created API key.
 
@@ -294,3 +289,12 @@ To stop and remove all data (including database volumes):
 ```bash
 docker-compose down -v
 ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+Feel free to contribute to this project by submitting issues or pull requests.
+
+## Developer
+- [HBilal Khan Yousafzai](https://www.linkedin.com/in/hbilal-9/)
