@@ -89,7 +89,32 @@ If you haven't installed PostgreSQL yet:
    CREATE INDEX ON pdf_embeddings USING hnsw (embedding vector_cosine_ops);
    ```
 
-### 3. Running the Application
+### 3. Docker Setup (Alternative)
+
+This project includes Docker support for easy deployment. You can run the entire application stack (including PostgreSQL with pgvector) using Docker Compose:
+
+```bash
+# Set your Google API key in the .env file first
+echo "GOOGLE_API_KEY=your_google_api_key" > .env
+
+# Start the application with Docker Compose
+docker-compose up -d
+
+# To stop the application
+docker-compose down
+```
+
+The application will be available at http://localhost:8501.
+
+#### Docker Volumes
+
+The Docker setup includes a persistent volume for PostgreSQL data, so your database will retain information between restarts. To reset the database completely, you can remove the volume:
+
+```bash
+docker-compose down -v
+```
+
+### 4. Running the Application
 
 ```bash
 streamlit run main.py
@@ -177,6 +202,9 @@ chatWithPDFsWithVectorDB/
 ├── main.py               # Main application code with Streamlit interface
 ├── README.md             # Project documentation
 └── requirements.txt      # Python dependencies
+Docker
+├── Dockerfile             # Dockerfile definition
+└── docker-compose.yml     # Docker Compose to connect multiple images
 ```
 
 ## Further Improvements
@@ -192,3 +220,77 @@ chatWithPDFsWithVectorDB/
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 Feel free to contribute to this project by submitting issues or pull requests.
+
+## Getting Started
+
+### Prerequisites
+
+- Docker and Docker Compose
+- Google Gemini API key
+
+### Obtaining a Google Gemini API Key
+
+1. Go to the [Google AI Studio](https://ai.google.dev/) and create an account or sign in.
+2. Navigate to the [API keys section](https://ai.google.dev/api/rest) in your Google AI Studio dashboard.
+3. Click "Create API Key" and follow the instructions.
+4. Copy your newly created API key.
+
+### Setup with Docker Compose
+
+1. Clone this repository:
+   ```bash
+   git clone <repository-url>
+   cd chatWithPDFsWithVectorDB
+   ```
+
+2. Create a `.env` file in the root directory with your Gemini API key:
+   ```bash
+   echo "GOOGLE_API_KEY=your_gemini_api_key_here" > .env
+   ```
+
+3. Build and start the services:
+   ```bash
+   docker-compose up -d
+   ```
+
+4. Access the application at http://localhost:8501
+
+### Docker Compose Services
+
+The application consists of two services:
+
+- `app`: The Streamlit web application that handles PDF processing and chat functionality
+- `db`: PostgreSQL database with pgvector extension for storing and querying vector embeddings
+
+### Environment Variables
+
+- `GOOGLE_API_KEY`: Your Google Gemini API key
+- `DATABASE_URL`: Connection string for the PostgreSQL database (automatically configured in Docker Compose)
+
+## Development
+
+To run the application in development mode with live reload:
+
+```bash
+docker-compose up
+```
+
+To rebuild the containers after making changes:
+
+```bash
+docker-compose up --build
+```
+
+## Stopping the Application
+
+To stop all services:
+
+```bash
+docker-compose down
+```
+
+To stop and remove all data (including database volumes):
+
+```bash
+docker-compose down -v
+```
